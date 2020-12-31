@@ -1,8 +1,12 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
 import time
 
 snake = Snake()
+food = Food()
+scoreboard = Scoreboard()
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -22,9 +26,15 @@ snake.create_snake()
 screen.update()
 
 while Game_On:
-    time.sleep(0.1)
+    time.sleep(0.05)
     snake.move_snake()
     snake.collision_wall()
+
+    if snake.segment[0].distance(food) < 15:
+        food.refresh()
+        scoreboard.write((0, 280), True, "center")
+
+
     # snake.create_food()
     # snake.collision_food()
     # print(snake.segment[0].heading())

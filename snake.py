@@ -68,30 +68,10 @@ class Snake:
             sys.exit()
         elif self.segment[0].ycor() < (-290):
             sys.exit()
-            
-    # def collision_food(self):
-    #     if (self.segment[0].xcor() <= self.food_x + 20 and
-    #      self.segment[0].xcor() >= self.food_x - 20 and
-    #       self.segment[0].ycor() <= self.food_y + 20 and
-    #        self.segment[0].ycor() >= self.food_y - 20):
 
-    #         self.food_on = False
-
-    # def create_food(self):
-    #     if self.food_on == False:
-    #         self.food_x = int(random.randrange(-290, 290))
-    #         self.food_y = int(random.randrange(-290, 290))
-    #         self.food_segment.shape("square")
-    #         self.food_segment.color("red")
-    #         self.food_segment.penup()
-    #         self.food_segment.goto(self.food_x, self.food_y)
-    #         self.food_on = True
-    #     else:
-    #         pass
-
-    # def plus(self):
-    #     new_segment = Turtle()
-    #     new_segment.shape("square")
-    #     new_segment.color("white")       
-    #     new_segment.penup()
-    #     self.segment.append(new_segment)
+    def plus(self):
+        new_segment = Turtle()
+        new_segment.shape("square")
+        new_segment.color("red")       
+        new_segment.penup()
+        # self.segment.append(new_segment)

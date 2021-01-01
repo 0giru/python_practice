@@ -39,5 +39,3 @@ else:
 
 
 screen.exitonclick()
-
-

@@ -9,7 +9,7 @@ food = Food()
 scoreboard = Scoreboard()
 
 screen = Screen()
-screen.setup(width=600, height=600)
+screen.setup(width=snake.size_width, height=snake.size_width)
 screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)
@@ -23,19 +23,24 @@ screen.onkey(snake.key_right, "Right")
 Game_On = True
 
 snake.create_snake()
-screen.update()
 
 while Game_On:
-    time.sleep(0.05)
+    screen.update()
+    time.sleep(0.075)
     snake.move_snake()
-    snake.collision_wall()
 
     if snake.segment[0].distance(food) < 15:
         food.refresh()
-        scoreboard.write((0, 280), True, "center")
+        snake.add_segment()
+        print(len(snake.segment))
+        scoreboard.Increase()
 
+    if snake.collision_wall():
+        Game_On = False
+        scoreboard.game_over()
 
-    # snake.create_food()
-    # snake.collision_food()
-    # print(snake.segment[0].heading())
-    screen.update()
+    if snake.collision_tail():
+        Game_On = False
+        scoreboard.game_over()
+
+screen.exitonclick()

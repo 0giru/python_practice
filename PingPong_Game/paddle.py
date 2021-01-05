@@ -8,7 +8,7 @@ class Paddle:
     def create_paddle(self, position):
         new_paddle = Turtle("square")
         new_paddle.penup()
-        new_paddle.color("white")
+        new_paddle.color("red")
         new_paddle.shapesize(5, 1)
         new_paddle.goto(position, 0)
         self.segment.append(new_paddle)

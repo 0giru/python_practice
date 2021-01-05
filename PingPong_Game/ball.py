@@ -21,12 +21,12 @@ class Ball:
     def ball_move(self):
         self.segment[0].forward(MOVING_DISTANCE)
     
-    def ball_reflect(self):
+    def paddle_reflect(self):
         new_heading = 180 - self.segment[0].heading()
         self.segment[0].setheading(new_heading)
     
-    def wall_collision(self):
-        new_heading = self.segment[0].heading()
-        self.segment[0].setheading(180-new_heading)
+    def wall_reflect(self):
+        new_heading = -(self.segment[0].heading())
+        self.segment[0].setheading(new_heading)
 
 

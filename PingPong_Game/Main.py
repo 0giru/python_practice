@@ -10,9 +10,8 @@ ball = Ball()
 scoreboard = Scoreboard()
 
 # index 0 paddle on the right
-paddle.create_paddle(350)
-# index 1 paddle on the left
 paddle.create_paddle(-350)
+paddle.create_paddle(350)
 ball.create_ball()
 
 screen.setup(width=800, height=600)
@@ -20,10 +19,10 @@ screen.bgcolor("black")
 screen.title("My PingPong Game")
 screen.listen()
 
-screen.onkey(paddle.go_up1, "Up")
-screen.onkey(paddle.go_down1, "Down")
-screen.onkey(paddle.go_up2, "w")
-screen.onkey(paddle.go_down2, "s")
+screen.onkey(paddle.go_up1, "w")
+screen.onkey(paddle.go_down1, "s")
+screen.onkey(paddle.go_up2, "p")
+screen.onkey(paddle.go_down2, ";")
 
 screen.tracer(0)
 
@@ -35,27 +34,17 @@ while Game_On:
     ball.ball_move()
 
     # paddle collision
-    if ball.segment[0].distance(paddle.segment[0]) < 10:
-        ball.ball_reflect()
+    if ball.segment[0].distance(paddle.segment[0]) <= 50 and ball.segment[0].xcor() < -330:
+        ball.paddle_reflect()
+    elif ball.segment[0].distance(paddle.segment[0]) <= 50 and ball.segment[0].xcor() < -370:
+        pass
+    elif ball.segment[0].distance(paddle.segment[1]) <= 50 and ball.segment[0].xcor() > 330:
+        ball.paddle_reflect()
+    elif ball.segment[0].distance(paddle.segment[1]) <= 50 and ball.segment[0].xcor() > 370:
+        pass
 
-    if ball.segment[0].distance(paddle.segment[1]) < 10:
-        ball.ball_reflect()
-
-    # # wall collision
-    # if(ball.ball_segment.ycor() > 290 or ball.ball_segment.ycor() < -290):
-    #     ball.wall_collision()
-
-    # if(ball.ball_reflex()):
-    #     scoreboard.paddle1_increase()
-    #     Game_On = False
-
-    # if(ball.ball_segment.xcor() > 295):
-    #     scoreboard.paddle1_increase()
-    #     Game_On = False
-    #     scoreboard.game_over()
-    # elif(ball.ball_segment.xcor() < -295):
-    #     scoreboard.paddle2_increase()
-    #     Game_On = False
-    #     scoreboard.game_over()
+    # top_bottom wall collision
+    if ball.segment[0].ycor() > 290 or ball.segment[0].ycor() < -290:
+        ball.wall_reflect()
 
 screen.exitonclick()

@@ -10,13 +10,17 @@ class Ball:
     def __init__(self):
         self.segment = []
 
+    def random_choice(self):
+        result = random.choice(heading)
+        return result
+
     def create_ball(self):
         ball_segment = Turtle("circle")
         ball_segment.color("white")
         ball_segment.penup()
         ball_segment.goto(0, 0)
         self.segment.append(ball_segment)
-        self.segment[0].setheading(random.choice(heading))
+        self.segment[0].setheading(self.random_choice())
 
     def ball_move(self):
         self.segment[0].forward(MOVING_DISTANCE)
